@@ -1,22 +1,52 @@
-package com.remedy.app;
+/* Copyright 2013 Foxdog Studios Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
-import android.widget.TextView;
-import org.apache.http.conn.util.InetAddressUtils;
+package com.remedy.app;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
+import java.util.Collections;
 import java.util.Enumeration;
+import java.util.List;
 
-public final class MainActivity extends Activity implements SurfaceHolder.Callback {
-    private static final String TAG = "RMDY";
+import android.app.Activity;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
+import android.content.pm.PackageManager;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.os.PowerManager;
+import android.os.PowerManager.WakeLock;
+import android.preference.PreferenceManager;
+import android.text.format.Formatter;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import android.widget.TextView;
 
-    private static final String WAKE_LOCK_TAG = "com.remedy.app";
+import org.apache.http.conn.util.InetAddressUtils;
+
+public final class StreamCameraActivity extends Activity
+        implements SurfaceHolder.Callback
+{
+    private static final String TAG = StreamCameraActivity.class.getSimpleName();
+
+    private static final String WAKE_LOCK_TAG = "peepers";
 
     private static final int PREF_PORT_DEF = 8080;
     private static final int PREF_JPEG_QUALITY_DEF = 40;
@@ -35,8 +65,14 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
     private TextView mIpAddressView = null;
     private WakeLock mWakeLock = null;
 
+    public StreamCameraActivity()
+    {
+        super();
+    } // constructor()
+
     @Override
-    protected void onCreate(final Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
@@ -50,7 +86,8 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
 
         final PowerManager powerManager =
                 (PowerManager) getSystemService(POWER_SERVICE);
-        mWakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, WAKE_LOCK_TAG);
+        mWakeLock = powerManager.newWakeLock(PowerManager.SCREEN_DIM_WAKE_LOCK,
+                WAKE_LOCK_TAG);
     } // onCreate(Bundle)
 
     @Override
@@ -74,23 +111,27 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
 
     @Override
     public void surfaceChanged(final SurfaceHolder holder, final int format,
-                               final int width, final int height) {
+            final int width, final int height)
+    {
         // Ingored
     } // surfaceChanged(SurfaceHolder, int, int, int)
 
     @Override
-    public void surfaceCreated(final SurfaceHolder holder) {
+    public void surfaceCreated(final SurfaceHolder holder)
+    {
         mPreviewDisplayCreated = true;
         tryStartCameraStreamer();
     } // surfaceCreated(SurfaceHolder)
 
     @Override
-    public void surfaceDestroyed(final SurfaceHolder holder) {
+    public void surfaceDestroyed(final SurfaceHolder holder)
+    {
         mPreviewDisplayCreated = false;
         ensureCameraStreamerStopped();
     } // surfaceDestroyed(SurfaceHolder)
 
-    private void tryStartCameraStreamer() {
+    private void tryStartCameraStreamer()
+    {
         if (mRunning && mPreviewDisplayCreated)
         {
             mCameraStreamer = new CameraStreamer(mPort, mJpegQuality, mPreviewDisplay);
@@ -165,5 +206,7 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
             // Ignore
         } // catch
         return null;
-    }
-}
+    } // tryGetIpV4Address()
+
+} // class StreamCameraActivity
+

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="libstreaming-3.0beta">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/libstreaming-3.0beta.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
