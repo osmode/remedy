@@ -184,31 +184,11 @@ import android.view.SurfaceHolder;
         final Camera camera = Camera.open(0);
         final Camera.Parameters params = camera.getParameters();
 
-//        final List<Camera.Size> supportedPreviewSizes = params.getSupportedPreviewSizes();
-//        for(Camera.Size p : supportedPreviewSizes ){
-//            Log.d(TAG, "size -> "+p.width+","+p.height);
-//        }
-
         params.setPreviewSize(640,480);
+        params.setPreviewFpsRange(30000,30000);
 
-        // Set Preview FPS range. The range with the greatest maximum
-        // is returned first.
-        final List<int[]> supportedPreviewFpsRanges = params.getSupportedPreviewFpsRange();
-        // XXX: However sometimes it returns null. This is a known bug
-        // https://code.google.com/p/android/issues/detail?id=6271
-        // In which case, we just don't set it.
-        if (supportedPreviewFpsRanges != null)
-        {
-//            for(int[] r : supportedPreviewFpsRanges){
-//                Log.d(TAG, "fps range -> " + r[Camera.Parameters.PREVIEW_FPS_MIN_INDEX] +","+r[Camera.Parameters.PREVIEW_FPS_MAX_INDEX]);
-//            }
-//            final int[] range = supportedPreviewFpsRanges.get(0);
-            params.setPreviewFpsRange(30000,30000);
-//            params.setPreviewFrameRate(30);
-            camera.setParameters(params);
-        } // if
+        camera.setParameters(params);
 
-        // Set up preview callback
         mPreviewFormat = params.getPreviewFormat();
         final Camera.Size previewSize = params.getPreviewSize();
         mPreviewWidth = previewSize.width;

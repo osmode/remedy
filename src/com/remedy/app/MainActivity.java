@@ -21,7 +21,6 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
     private static final int PREF_PORT_DEF = 8080;
     private static final int PREF_JPEG_QUALITY_DEF = 40;
     // preview sizes will always have at least one element, so this is safe
-    private static final int PREF_PREVIEW_SIZE_INDEX_DEF = 0;
 
     private boolean mRunning = false;
     private boolean mPreviewDisplayCreated = false;
@@ -31,7 +30,6 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
     private String mIpAddress = "";
     private int mPort = PREF_PORT_DEF;
     private int mJpegQuality = PREF_JPEG_QUALITY_DEF;
-    private int mPrevieSizeIndex = PREF_PREVIEW_SIZE_INDEX_DEF;
     private TextView mIpAddressView = null;
     private WakeLock mWakeLock = null;
 
@@ -121,7 +119,6 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
             mPort = 65535;
         } // else if
 
-        mPrevieSizeIndex = PREF_PREVIEW_SIZE_INDEX_DEF;
         mJpegQuality = PREF_JPEG_QUALITY_DEF;
         // The JPEG quality must be in the range [0 100]
         if (mJpegQuality < 0)

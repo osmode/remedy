@@ -24,13 +24,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c27b7f8d-aee3-4cdb-adb8-4a90de522ee9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_support_v13.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/libstreaming_3_0beta.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/AndroidManifest.xml" afterPath="$PROJECT_DIR$/AndroidManifest.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/remedy/app/StreamCameraActivity.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/remedy/app/CameraStreamer.java" afterPath="$PROJECT_DIR$/src/com/remedy/app/CameraStreamer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/remedy/app/MainActivity.java" afterPath="$PROJECT_DIR$/src/com/remedy/app/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/layout/main.xml" afterPath="$PROJECT_DIR$/res/layout/main.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/remedy.iml" afterPath="$PROJECT_DIR$/remedy.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="remedy.iws" />
@@ -122,7 +118,7 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="95" column="54" selection-start="3219" selection-end="3219" vertical-scroll-proportion="0.0">
+            <state line="93" column="45" selection-start="3084" selection-end="3084" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -133,31 +129,11 @@
       <file leaf-file-name="CameraStreamer.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/remedy/app/CameraStreamer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="187" column="0" selection-start="6230" selection-end="6230" vertical-scroll-proportion="0.2446184">
+            <state line="197" column="46" selection-start="6648" selection-end="6648" vertical-scroll-proportion="0.27715355">
               <folding>
-                <element signature="e#0#11108#0" expanded="true" />
-                <element signature="e#9185#9662#0" expanded="true" />
-                <element signature="e#9621#9622#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Log.class" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar:///Applications/Android-sdk/platforms/android-15/android.jar!/android/util/Log.class">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="19" selection-start="161" selection-end="161" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StreamCameraActivity.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/remedy/app/StreamCameraActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="136" column="54" selection-start="4403" selection-end="4403" vertical-scroll-proportion="-4.923077">
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#0#10068#0" expanded="true" />
+                <element signature="e#8145#8622#0" expanded="true" />
+                <element signature="e#8581#8582#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -167,15 +143,6 @@
         <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MJpegHttpStreamer.java">
           <provider selected="true" editor-type-id="text-editor">
             <state line="59" column="18" selection-start="2105" selection-end="2105" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MemoryOutputStream.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MemoryOutputStream.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="22" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -217,8 +184,8 @@
         <option value="$PROJECT_DIR$/src/com/remedy/app/MJpegHttpStreamer.java" />
         <option value="$PROJECT_DIR$/src/com/remedy/app/MemoryOutputStream.java" />
         <option value="/Applications/Android-sdk/platforms/android-15/android.jar!/android/hardware/Camera.class" />
-        <option value="$PROJECT_DIR$/src/com/remedy/app/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/remedy/app/StreamCameraActivity.java" />
+        <option value="$PROJECT_DIR$/src/com/remedy/app/MainActivity.java" />
         <option value="$PROJECT_DIR$/src/com/remedy/app/CameraStreamer.java" />
       </list>
     </option>
@@ -519,7 +486,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1676259" sideWeight="0.7757256" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22427441" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22427441" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3294964" sideWeight="0.7757256" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -655,13 +622,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MemoryOutputStream.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="22" selection-start="620" selection-end="620" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Applications/Android-sdk/platforms/android-15/android.jar!/android/graphics/YuvImage.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="18" column="0" selection-start="627" selection-end="627" vertical-scroll-proportion="0.47486034">
@@ -683,13 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MJpegHttpStreamer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="18" selection-start="2105" selection-end="2105" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MovingAverage.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="42" column="21" selection-start="1271" selection-end="1271" vertical-scroll-proportion="0.5596869">
@@ -699,18 +652,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MemoryOutputStream.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="95" column="54" selection-start="3219" selection-end="3219" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="25" column="18" selection-start="831" selection-end="831" vertical-scroll-proportion="-0.6201117">
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/StreamCameraActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MJpegHttpStreamer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="136" column="54" selection-start="4403" selection-end="4403" vertical-scroll-proportion="-4.923077">
+        <state line="59" column="18" selection-start="2105" selection-end="2105" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/remedy/app/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="45" selection-start="3084" selection-end="3084" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -719,11 +677,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/remedy/app/CameraStreamer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="187" column="0" selection-start="6230" selection-end="6230" vertical-scroll-proportion="0.2446184">
+        <state line="197" column="46" selection-start="6648" selection-end="6648" vertical-scroll-proportion="0.27715355">
           <folding>
-            <element signature="e#0#11108#0" expanded="true" />
-            <element signature="e#9185#9662#0" expanded="true" />
-            <element signature="e#9621#9622#0" expanded="true" />
+            <element signature="e#0#10068#0" expanded="true" />
+            <element signature="e#8145#8622#0" expanded="true" />
+            <element signature="e#8581#8582#0" expanded="true" />
           </folding>
         </state>
       </provider>
