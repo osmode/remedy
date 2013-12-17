@@ -1,5 +1,11 @@
 package com.remedy.app;
 
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.Enumeration;
+
+import org.apache.http.conn.util.InetAddressUtils;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.PowerManager;
@@ -7,11 +13,8 @@ import android.os.PowerManager.WakeLock;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
-import org.apache.http.conn.util.InetAddressUtils;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.util.Enumeration;
+import com.remedy.glass.R;
 
 public final class MainActivity extends Activity implements SurfaceHolder.Callback {
     private static final String TAG = "RMDY";
@@ -49,118 +52,111 @@ public final class MainActivity extends Activity implements SurfaceHolder.Callba
         final PowerManager powerManager =
                 (PowerManager) getSystemService(POWER_SERVICE);
         mWakeLock = powerManager.newWakeLock(PowerManager.FULL_WAKE_LOCK, WAKE_LOCK_TAG);
-    } // onCreate(Bundle)
+    }
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
         mRunning = true;
         updatePrefCacheAndUi();
-        tryStartCameraStreamer();
+        tryStartStreaming();
         mWakeLock.acquire();
-    } // onResume()
+    }
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         mWakeLock.release();
         super.onPause();
         mRunning = false;
         ensureCameraStreamerStopped();
-    } // onPause()
+    }
 
     @Override
     public void surfaceChanged(final SurfaceHolder holder, final int format,
                                final int width, final int height) {
         // Ingored
-    } // surfaceChanged(SurfaceHolder, int, int, int)
+    }
 
     @Override
     public void surfaceCreated(final SurfaceHolder holder) {
         mPreviewDisplayCreated = true;
-        tryStartCameraStreamer();
-    } // surfaceCreated(SurfaceHolder)
+        tryStartStreaming();
+    }
 
     @Override
     public void surfaceDestroyed(final SurfaceHolder holder) {
         mPreviewDisplayCreated = false;
         ensureCameraStreamerStopped();
-    } // surfaceDestroyed(SurfaceHolder)
+    }
+
+    private void tryStartStreaming(){
+        tryStartCameraStreamer();
+        tryStartAudioStreamer();
+    }
 
     private void tryStartCameraStreamer() {
-        if (mRunning && mPreviewDisplayCreated)
-        {
+        if (mRunning && mPreviewDisplayCreated) {
             mCameraStreamer = new CameraStreamer(mPort, mJpegQuality, mPreviewDisplay);
             mCameraStreamer.start();
-        } // if
-    } // tryStartCameraStreamer()
+        }
+    }
 
-    private void ensureCameraStreamerStopped()
-    {
-        if (mCameraStreamer != null)
-        {
+
+    private void tryStartAudioStreamer(){
+        if(mRunning){
+            //mAudioStreamer = new AudioStreamer();
+            //mAudioStreamer.start();
+        }
+    }
+
+    private void ensureCameraStreamerStopped() {
+        if (mCameraStreamer != null) {
             mCameraStreamer.stop();
             mCameraStreamer = null;
-        } // if
-    } // stopCameraStreamer()
+        }
+    }
 
-    private final void updatePrefCacheAndUi()
-    {
-        // XXX: This validation should really be in the preferences activity.
+    private final void updatePrefCacheAndUi() {
         mPort = PREF_PORT_DEF;
         // The port must be in the range [1024 65535]
-        if (mPort < 1024)
-        {
+        if (mPort < 1024) {
             mPort = 1024;
-        } // if
-        else if (mPort > 65535)
-        {
+        } else if (mPort > 65535) {
             mPort = 65535;
-        } // else if
+        }
 
         mJpegQuality = PREF_JPEG_QUALITY_DEF;
         // The JPEG quality must be in the range [0 100]
-        if (mJpegQuality < 0)
-        {
+        if (mJpegQuality < 0) {
             mJpegQuality = 0;
-        } // if
-        else if (mJpegQuality > 100)
-        {
+        } else if (mJpegQuality > 100) {
             mJpegQuality = 100;
-        } // else if
+        }
         mIpAddressView.setText("http://" + mIpAddress + ":" + mPort + "/");
-    } // updatePrefCacheAndUi()
+    }
 
-    private static String tryGetIpV4Address()
-    {
-        try
-        {
+    private static String tryGetIpV4Address() {
+        try {
             final Enumeration<NetworkInterface> en =
                     NetworkInterface.getNetworkInterfaces();
-            while (en.hasMoreElements())
-            {
+            while (en.hasMoreElements()) {
                 final NetworkInterface intf = en.nextElement();
                 final Enumeration<InetAddress> enumIpAddr =
                         intf.getInetAddresses();
-                while (enumIpAddr.hasMoreElements())
-                {
+                while (enumIpAddr.hasMoreElements()) {
                     final  InetAddress inetAddress = enumIpAddr.nextElement();
-                    if (!inetAddress.isLoopbackAddress())
-                    {
+                    if (!inetAddress.isLoopbackAddress()) {
                         final String addr = inetAddress.getHostAddress().toUpperCase();
-                        if (InetAddressUtils.isIPv4Address(addr))
-                        {
+                        if (InetAddressUtils.isIPv4Address(addr)) {
                             return addr;
                         }
-                    } // if
-                } // while
-            } // for
-        } // try
-        catch (final Exception e)
-        {
+                    }
+                }
+            }
+        } catch (final Exception e) {
             // Ignore
-        } // catch
+        }
+
         return null;
     }
 }

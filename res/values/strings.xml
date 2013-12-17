@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MainActivity</string>
+
+    <string name="app_name">Remedy</string>
+    <string name="login_label">Log In to Remedy</string>
+    <string name="call_expert_label">Call Expert</string>
+    <string name="receive_call_label">Receive Call</string>
+    <string name="display_message_label">Display Message</string>
+    
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="show_remedy_voice_trigger">launch remedy</string>
+    
+    <string name="call">Call Expert</string>
+    <string name="take_photo">Take Photo</string>
+    <string name="document">Document Case</string>
+    <string name="logout">Logout</string>
+    <string name="hangup">Hangup</string>
+    <string name="accept_call">Accept</string>
+    <string name="decline_call">Decline</string>
+    <string name="acknowledge">Acknowledge</string>
+    
+  <string name="msg_camera_framework_bug">Sorry, the Android camera encountered a problem. You may need to restart the device.</string>
+  <string name="msg_default_format">Format</string>
+  <string name="msg_default_meta">Metadata</string>
+  <string name="msg_default_mms_subject">Hi</string>
+  <string name="msg_default_status">Place a barcode inside the viewfinder rectangle to scan it.</string>
+  <string name="msg_default_time">Time</string>
+  <string name="msg_default_type">Type</string>
+  <string name="msg_encode_contents_failed">Could not encode a barcode from the data provided.</string>    
 </resources>

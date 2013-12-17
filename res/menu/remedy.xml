@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item
+        android:id="@+id/call_menu_item"
+        android:title="@string/call"               
+        android:icon="@drawable/ic_phone_out_50" />
+    <item
+        android:id="@+id/take_photo_menu_item"
+        android:title="@string/take_photo"               
+        android:icon="@drawable/ic_camera_50" />
+    <item
+        android:id="@+id/document_menu_item"
+        android:title="@string/document"               
+        android:icon="@drawable/ic_document_50" />
+    <!--  We no longer have a logout menu item, as "logout" is removing the Glass from your head
+    <item
+        android:id="@+id/logout_menu_item"
+        android:title="@string/logout"               
+        android:icon="@drawable/ic_no_50" />
+         -->      
+</menu>

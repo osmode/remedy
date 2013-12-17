@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <group android:id="@+id/group_accept_call" >
+        <item
+            android:id="@+id/accept_menu_item"
+            android:icon="@drawable/ic_phone_in_50"
+            android:title="@string/accept_call"/>
+        <item
+            android:id="@+id/decline_menu_item"
+            android:icon="@drawable/ic_phone_hang_50"
+            android:title="@string/decline_call"/>
+    </group>
+    <group android:id="@+id/group_in_call" >
+        <item
+            android:id="@+id/hangup_menu_item"
+            android:icon="@drawable/ic_phone_hang_50"
+            android:title="@string/hangup"/>
+    </group>
+
+</menu>
