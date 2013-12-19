@@ -76,7 +76,7 @@ public class LoginActivity extends Activity {
 
 		card = new Card(this);
 		card.setText("Remedy");
-		card.setInfo("For Google Glass");
+		//card.setInfo("For Google Glass");
 		mCards.add(card);
 
 		card = new Card(this);

@@ -4,6 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.speech.RecognizerIntent;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -36,6 +38,7 @@ public class MainActivity extends LogoutOnStopActivity {
 	
 	protected static final String TAG = "Remedy.main";
 	private User currentUser;
+	private static final int SPEECH_REQUEST = 50;
 	private static final int CAPTURE_IMAGE_REQUEST_CODE = 100;
 	private static final int CAPTURE_VIDEO_REQUEST_CODE = 200;
 
@@ -81,7 +84,7 @@ public class MainActivity extends LogoutOnStopActivity {
 	private Card createUserCard(User user) {
 		Card card = new Card(this);
 		card.setText(user.fullName);
-		card.setInfo(user.title);
+		//card.setFootnote(user.title);
 		card.addImage(user.image);
 		
 		return card;
@@ -116,6 +119,13 @@ public class MainActivity extends LogoutOnStopActivity {
             	Log.d(TAG, "Take photo menu item selected");
             	startPhoto();
             	return true;
+            	
+            case R.id.document_menu_item:
+            	Log.d(TAG, "Start text to speech");
+            	startVoiceToText();
+            	return true;
+            	
+            	
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -134,7 +144,10 @@ public class MainActivity extends LogoutOnStopActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     	
-    	if (requestCode == CAPTURE_IMAGE_REQUEST_CODE && resultCode == Activity.RESULT_OK ) {
+    	if (resultCode != Activity.RESULT_OK)
+    		return;
+    	
+    	if (requestCode == CAPTURE_IMAGE_REQUEST_CODE ) {
     		
     		String thumbnailFilepath = data.getStringExtra(Camera.EXTRA_THUMBNAIL_FILE_PATH);
     		String fullFilepath = data.getStringExtra(Camera.EXTRA_PICTURE_FILE_PATH);
@@ -142,6 +155,16 @@ public class MainActivity extends LogoutOnStopActivity {
     		Log.d(TAG, "Intent extra: " + data.getExtras());
     		Log.d(TAG, "Thumbnail file path: " + fullFilepath);
     	}
+    	
+    	if (requestCode == SPEECH_REQUEST) {
+    		
+        	Log.d(TAG, "onActivityResult");
+    		
+    		List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+    		String spokenText = results.get(0);
+    		Log.d(TAG, "spoken text: " + spokenText);
+    	}
+    	
     	/*
     	if (requestCode == CAPTURE_IMAGE_REQUEST_CODE) {
     		if (resultCode == RESULT_OK) {
@@ -166,6 +189,7 @@ public class MainActivity extends LogoutOnStopActivity {
     	        }
     	    }
     	    */
+    	super.onActivityResult(requestCode, resultCode, data);
     }
     
    	private void startPhoto() {
@@ -173,6 +197,11 @@ public class MainActivity extends LogoutOnStopActivity {
    		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
    		startActivityForResult(intent, CAPTURE_IMAGE_REQUEST_CODE);
 	}
+   	
+   	private void startVoiceToText() {
+   		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+   		startActivityForResult(intent, SPEECH_REQUEST);
+   	}
    	
    	private void uploadPhoto(String filePath) {
    		File imgFile = new File(filePath);
