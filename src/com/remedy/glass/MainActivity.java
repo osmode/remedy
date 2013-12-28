@@ -1,16 +1,19 @@
 package com.remedy.glass;
 
-import java.io.ByteArrayOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -23,7 +26,7 @@ import android.view.MenuItem;
 import android.view.WindowManager;
 
 import com.google.android.glass.app.Card;
-import com.google.android.glass.media.Camera;
+import com.google.android.glass.media.CameraManager;
 
 /*** 
  MainActivity is started in LoginActivity after  QR code is successfully read 
@@ -41,10 +44,20 @@ public class MainActivity extends LogoutOnStopActivity {
 	private static final int SPEECH_REQUEST = 50;
 	private static final int CAPTURE_IMAGE_REQUEST_CODE = 100;
 	private static final int CAPTURE_VIDEO_REQUEST_CODE = 200;
-
+	
+	private static final String PHOTO_UPLOAD_URL = "http://162.243.213.58/upload_photo";
 	private Uri mFileUri;
+	private String photoPath;
 	
 	
+	public String getPhotoPath() {
+		return photoPath;
+	}
+
+	public void setPhotoPath(String photoPath) {
+		this.photoPath = photoPath;
+	}
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -149,11 +162,15 @@ public class MainActivity extends LogoutOnStopActivity {
     	
     	if (requestCode == CAPTURE_IMAGE_REQUEST_CODE ) {
     		
-    		String thumbnailFilepath = data.getStringExtra(Camera.EXTRA_THUMBNAIL_FILE_PATH);
-    		String fullFilepath = data.getStringExtra(Camera.EXTRA_PICTURE_FILE_PATH);
+    		String thumbnailFilepath = data.getStringExtra(CameraManager.EXTRA_THUMBNAIL_FILE_PATH);
+    		String fullFilepath = data.getStringExtra(CameraManager.EXTRA_PICTURE_FILE_PATH);
     		
     		Log.d(TAG, "Intent extra: " + data.getExtras());
     		Log.d(TAG, "Thumbnail file path: " + fullFilepath);
+    		
+    		setPhotoPath(thumbnailFilepath);
+    		
+    		new UploadPhotoTask().execute();
     	}
     	
     	if (requestCode == SPEECH_REQUEST) {
@@ -203,6 +220,7 @@ public class MainActivity extends LogoutOnStopActivity {
    		startActivityForResult(intent, SPEECH_REQUEST);
    	}
    	
+   	/*
    	private void uploadPhoto(String filePath) {
    		File imgFile = new File(filePath);
    		if (! imgFile.exists()) 
@@ -213,6 +231,7 @@ public class MainActivity extends LogoutOnStopActivity {
    		myBitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
    		byte[] bitmapData = stream.toByteArray();
    	}
+   	*/
    	
    	private static Uri getOutputMediaFileUri(int type) {
    		return Uri.fromFile(getOutputMediaFile(type));
@@ -246,4 +265,84 @@ public class MainActivity extends LogoutOnStopActivity {
    		
    		return mediaFile;
    	}
+   	
+   	private void uploadPhoto() {
+   		//File file = new File (filePath);
+   		HttpURLConnection connection = null;
+   		DataOutputStream outputStream = null;
+   		DataInputStream inputStream = null;
+   		
+   		String lineEnd = "\r\n";
+   		String twoHyphens = "--";
+   		String boundary = "*****";
+   		
+   		int bytesRead, bytesAvailable, bufferSize;
+   		byte[] buffer;
+   		int maxBufferSize = 1*1024*10248;
+   		
+   		try {
+   			FileInputStream fileInputStream = new FileInputStream(new File(getPhotoPath()));
+   			URL url = new URL(PHOTO_UPLOAD_URL);
+   			connection = (HttpURLConnection)url.openConnection();
+   			
+   			// Allow inputs and outputs
+   			connection.setDoInput(true);
+   			connection.setDoOutput(true);
+   			connection.setUseCaches(false);
+   			
+   			connection.setRequestMethod("POST");
+   			connection.setRequestProperty("Connection", "Keep-Alive");
+   			connection.setRequestProperty("Content-Type", "multipart/form-data;boundary="+boundary);
+   			
+   			outputStream = new DataOutputStream(connection.getOutputStream());
+   			outputStream.writeBytes(twoHyphens + boundary + lineEnd);
+   			outputStream.writeBytes("Content-Disposition: form-data; name=\"uploadedfile\";filename=\"" + getPhotoPath() + "\"" + lineEnd);
+   			outputStream.writeBytes(lineEnd);
+   			
+   			bytesAvailable = fileInputStream.available();
+   			bufferSize = Math.min(bytesAvailable, maxBufferSize);
+   			buffer = new byte[bufferSize];
+   			
+   			// Read file
+   			bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+   			
+   			while (bytesRead > 0) {
+   				outputStream.write(buffer, 0, bufferSize);
+   				bytesAvailable = fileInputStream.available();
+   				bufferSize = Math.min(bytesAvailable, maxBufferSize);
+   				bytesRead = fileInputStream.read(buffer, 0, bufferSize);
+   			}
+   			
+   			outputStream.writeBytes(lineEnd);
+   			outputStream.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+   			
+   			int serverResponseCode = connection.getResponseCode();
+   			String serverResponseMessage = connection.getResponseMessage();
+   			
+   			Log.d(TAG, "Response message: " + serverResponseMessage);
+   			
+   			fileInputStream.close();
+   			outputStream.flush();
+   			outputStream.close();
+   		} catch (Exception e) {
+   			e.printStackTrace();
+   		}
+   		
+   	
+   	}
+   	
+   	private class UploadPhotoTask extends AsyncTask<Void, Void, Void> {
+   		@Override
+   		protected Void doInBackground(Void...params) {
+   			uploadPhoto();
+   			return null;
+   		}
+   		
+   		@Override
+   		protected void onPostExecute(Void v) {
+   			
+   		}
+   	}
+   	
 }
+

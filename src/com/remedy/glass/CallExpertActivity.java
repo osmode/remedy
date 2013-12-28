@@ -49,7 +49,7 @@ public class CallExpertActivity extends LogoutOnStopActivity {
 		
 		Card card = new Card(this);
 		card.setText("Calling Dr. Siddiqui...");
-		card.setInfo("Physician at UPenn");
+		//card.setInfo("Physician at UPenn");
 		card.addImage(R.drawable.drsiddiqui);
 		
 		setContentView(card.toView());

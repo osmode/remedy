@@ -48,7 +48,7 @@ public class ReceiveCallActivity extends LogoutOnStopActivity {
 		
 		Card card = new Card(this);
 		card.setText("Incoming call from Dr. Siddiqui");
-		card.setInfo("Tap to accept");
+		//card.setInfo("Tap to accept");
 		card.addImage(R.drawable.drsiddiqui);
 		
 		setContentView(card.toView());
@@ -103,7 +103,7 @@ public class ReceiveCallActivity extends LogoutOnStopActivity {
                         inCall = true;
                 		Card card = new Card(this);
                 		card.setText("Call with Dr. Siddiqui");
-                		card.setInfo("Tap to end");
+                		//card.setInfo("Tap to end");
                 		card.addImage(R.drawable.drsiddiqui);
                 		
                 		setContentView(card.toView());

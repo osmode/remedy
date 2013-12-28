@@ -49,7 +49,7 @@ public class LoginActivity extends Activity {
 	        @Override
 	        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 	            if (position == 0) {  // if splash screen selected, do nothing
-	            	mCardScrollView.animateToIdSelection(1, 0);
+	            	//mCardScrollView.animateToIdSelection(1, 0);
 	            } else if (position == 1){  // if login card selected, start CaptureActivity (QR code reader)
 	            	Intent captureIntent = new Intent(ctx, CaptureActivity.class);
 	            	startActivityForResult(captureIntent, LOGIN_SCAN_REQUEST);
@@ -63,7 +63,7 @@ public class LoginActivity extends Activity {
 			@Override 
 			public void run() {
 				if (mCardScrollView.getSelectedItemPosition() == 0) {
-					mCardScrollView.animateToIdSelection(1, 0);
+					//mCardScrollView.animateToIdSelection(1, 0);
 				}
 			}
 		}, AUTOSCROLL_WAIT);
@@ -107,5 +107,9 @@ public class LoginActivity extends Activity {
         }
 	}  // end onActivityResult
 	
+	
+
 }  // end LoginActivity
+
+
 

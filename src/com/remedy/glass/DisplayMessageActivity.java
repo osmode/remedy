@@ -42,7 +42,7 @@ public class DisplayMessageActivity extends LogoutOnStopActivity {
 			card.setText(text);
 		}
 		if (subtext != null) {
-			card.setInfo(subtext);
+			//card.setInfo(subtext);
 		}
 		if (image != null) {
 			String uriString = "android.resource://com.remedy.glass/raw/" + image;
@@ -50,7 +50,7 @@ public class DisplayMessageActivity extends LogoutOnStopActivity {
 		}
 		
 		if (image != null && subtext == null) {
-			card.setFullScreenImages(true);
+			//card.setFullScreenImages(true);
 		}
 		
 		return card;
