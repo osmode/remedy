@@ -127,7 +127,7 @@ public class RemedyService extends Service {
     private BroadcastReceiver mLogoutMessageReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-        	logout();
+        	//logout();
         }
     };
 

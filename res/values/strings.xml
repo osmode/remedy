@@ -13,6 +13,7 @@
     
     <string name="call">Call Expert</string>
     <string name="take_photo">Take Photo</string>
+    <string name="take_video">Take Video</string>
     <string name="document">Document Case</string>
     <string name="logout">Logout</string>
     <string name="hangup">Hangup</string>

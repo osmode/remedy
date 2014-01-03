@@ -45,7 +45,7 @@ public class MainActivity extends LogoutOnStopActivity {
 	private static final int CAPTURE_IMAGE_REQUEST_CODE = 100;
 	private static final int CAPTURE_VIDEO_REQUEST_CODE = 200;
 	
-	private static final String PHOTO_UPLOAD_URL = "http://162.243.213.58/upload_photo";
+	private static final String PHOTO_UPLOAD_URL = "http://insightforglass.com/upload_photo";
 	private Uri mFileUri;
 	private String photoPath;
 	
@@ -97,7 +97,7 @@ public class MainActivity extends LogoutOnStopActivity {
 	private Card createUserCard(User user) {
 		Card card = new Card(this);
 		card.setText(user.fullName);
-		//card.setFootnote(user.title);
+		card.setFootnote(user.title);
 		card.addImage(user.image);
 		
 		return card;
@@ -132,12 +132,14 @@ public class MainActivity extends LogoutOnStopActivity {
             	Log.d(TAG, "Take photo menu item selected");
             	startPhoto();
             	return true;
-            	
+            case R.id.take_video_menu_item:
+            	Log.d(TAG, "Take video menu item selected");
+            	startVideo();
+            	return true;
             case R.id.document_menu_item:
             	Log.d(TAG, "Start text to speech");
             	startVoiceToText();
             	return true;
-            	
             	
             default:
                 return super.onOptionsItemSelected(item);
@@ -169,7 +171,14 @@ public class MainActivity extends LogoutOnStopActivity {
     		Log.d(TAG, "Thumbnail file path: " + fullFilepath);
     		
     		setPhotoPath(thumbnailFilepath);
+    		new UploadPhotoTask().execute();
     		
+    	} else if (requestCode == CAPTURE_VIDEO_REQUEST_CODE) {
+    		
+    		String thumbnailFilepath = data.getStringExtra(CameraManager.EXTRA_VIDEO_FILE_PATH);
+    		Log.d(TAG, "Video filepath: " + thumbnailFilepath);
+    		
+    		setPhotoPath(thumbnailFilepath);
     		new UploadPhotoTask().execute();
     	}
     	
@@ -214,6 +223,12 @@ public class MainActivity extends LogoutOnStopActivity {
    		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
    		startActivityForResult(intent, CAPTURE_IMAGE_REQUEST_CODE);
 	}
+   	
+   	private void startVideo() {
+   		Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+   		intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT, 60);
+   		startActivityForResult(intent, CAPTURE_VIDEO_REQUEST_CODE);
+   	}
    	
    	private void startVoiceToText() {
    		Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -320,11 +335,13 @@ public class MainActivity extends LogoutOnStopActivity {
    			String serverResponseMessage = connection.getResponseMessage();
    			
    			Log.d(TAG, "Response message: " + serverResponseMessage);
+   			Log.d(TAG, "Response code:" + serverResponseCode);
    			
    			fileInputStream.close();
    			outputStream.flush();
    			outputStream.close();
    		} catch (Exception e) {
+   			
    			e.printStackTrace();
    		}
    		

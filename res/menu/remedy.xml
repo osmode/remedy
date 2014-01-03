@@ -9,6 +9,11 @@
         android:title="@string/take_photo"               
         android:icon="@drawable/ic_camera_50" />
     <item
+        android:id="@+id/take_video_menu_item"
+        android:title="@string/take_video"
+        android:icon="@drawable/ic_camera_50" />
+    
+    <item
         android:id="@+id/document_menu_item"
         android:title="@string/document"               
         android:icon="@drawable/ic_document_50" />

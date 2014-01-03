@@ -68,7 +68,7 @@ public final class R {
         public static final int decode=0x7f080000;
         public static final int decode_failed=0x7f080001;
         public static final int decode_succeeded=0x7f080002;
-        public static final int document_menu_item=0x7f08001f;
+        public static final int document_menu_item=0x7f080020;
         public static final int format_text_view=0x7f08000b;
         public static final int group_accept_call=0x7f080016;
         public static final int group_in_call=0x7f080019;
@@ -85,6 +85,7 @@ public final class R {
         public static final int return_scan_result=0x7f080006;
         public static final int status_view=0x7f080013;
         public static final int take_photo_menu_item=0x7f08001e;
+        public static final int take_video_menu_item=0x7f08001f;
         public static final int time_text_view=0x7f08000d;
         public static final int type_text_view=0x7f08000c;
         public static final int viewfinder_view=0x7f080008;
@@ -108,38 +109,41 @@ public final class R {
         public static final int disconnect=0x7f050003;
         public static final int foorplan=0x7f050004;
         public static final int incoming=0x7f050005;
-        public static final int noor=0x7f050006;
-        public static final int outgoing=0x7f050007;
-        public static final int peterserp=0x7f050008;
-        public static final int robfilk=0x7f050009;
-        public static final int siavash=0x7f05000a;
-        public static final int suesiegel=0x7f05000b;
+        public static final int malenurse=0x7f050006;
+        public static final int noor=0x7f050007;
+        public static final int outgoing=0x7f050008;
+        public static final int peterserp=0x7f050009;
+        public static final int robfilk=0x7f05000a;
+        public static final int schwaitzberg_large=0x7f05000b;
+        public static final int siavash=0x7f05000c;
+        public static final int suesiegel=0x7f05000d;
     }
     public static final class string {
-        public static final int accept_call=0x7f09000d;
-        public static final int acknowledge=0x7f09000f;
+        public static final int accept_call=0x7f09000e;
+        public static final int acknowledge=0x7f090010;
         public static final int action_settings=0x7f090005;
         public static final int app_name=0x7f090000;
         public static final int call=0x7f090008;
         public static final int call_expert_label=0x7f090002;
-        public static final int decline_call=0x7f09000e;
+        public static final int decline_call=0x7f09000f;
         public static final int display_message_label=0x7f090004;
-        public static final int document=0x7f09000a;
-        public static final int hangup=0x7f09000c;
+        public static final int document=0x7f09000b;
+        public static final int hangup=0x7f09000d;
         public static final int hello_world=0x7f090006;
         public static final int login_label=0x7f090001;
-        public static final int logout=0x7f09000b;
-        public static final int msg_camera_framework_bug=0x7f090010;
-        public static final int msg_default_format=0x7f090011;
-        public static final int msg_default_meta=0x7f090012;
-        public static final int msg_default_mms_subject=0x7f090013;
-        public static final int msg_default_status=0x7f090014;
-        public static final int msg_default_time=0x7f090015;
-        public static final int msg_default_type=0x7f090016;
-        public static final int msg_encode_contents_failed=0x7f090017;
+        public static final int logout=0x7f09000c;
+        public static final int msg_camera_framework_bug=0x7f090011;
+        public static final int msg_default_format=0x7f090012;
+        public static final int msg_default_meta=0x7f090013;
+        public static final int msg_default_mms_subject=0x7f090014;
+        public static final int msg_default_status=0x7f090015;
+        public static final int msg_default_time=0x7f090016;
+        public static final int msg_default_type=0x7f090017;
+        public static final int msg_encode_contents_failed=0x7f090018;
         public static final int receive_call_label=0x7f090003;
         public static final int show_remedy_voice_trigger=0x7f090007;
         public static final int take_photo=0x7f090009;
+        public static final int take_video=0x7f09000a;
     }
     public static final class style {
         /** 
