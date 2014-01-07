@@ -45,7 +45,7 @@ public class MainActivity extends LogoutOnStopActivity {
 	private static final int CAPTURE_IMAGE_REQUEST_CODE = 100;
 	private static final int CAPTURE_VIDEO_REQUEST_CODE = 200;
 	
-	private static final String PHOTO_UPLOAD_URL = "http://insightforglass.com/upload_photo";
+	private static final String PHOTO_UPLOAD_URL = "http://162.243.122.22/upload_photo";
 	private Uri mFileUri;
 	private String photoPath;
 	

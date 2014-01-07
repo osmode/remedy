@@ -17,8 +17,8 @@ public class UserDB {
 		db.put("q51jPX0P4KV6v4q", new User("siavash", "Siavash Yazdanfar", "Applied Optics Laboratory", "android.resource://com.remedy.glass/raw/siavash"));
 		db.put("PTp3hD506EH4O28", new User("alexdw", "Alex DeWinter", "Director of Healthcare Investment", "android.resource://com.remedy.glass/raw/alexdw"));
 		db.put("eaTCcRC4AggczhL", new User("robfilk", "Robert Filkins", "Molecular Diagnostics Platforms", "android.resource://com.remedy.glass/raw/robfilk"));
-		db.put("567", new User("schwaitzberg", "Steven Schwaitzberg", "Cambridge Health Alliance", "android.resource://com.remedy.glass/raw/schwaitzberg_large"));
-		db.put("382", new User("generic", "Provider", "Your Hospital", "android.resource://com.remedy.glass/raw/malenurse"));
+		db.put("56789", new User("schwaitzberg", "Steven Schwaitzberg", "Cambridge Health Alliance", "android.resource://com.remedy.glass/raw/schwaitzberg_large"));
+		db.put("38245", new User("generic", "Provider", "Your Hospital", "android.resource://com.remedy.glass/raw/malenurse"));
 		
 	};
 	
@@ -30,3 +30,4 @@ public class UserDB {
 		return db.containsKey(loginCredentials);
 	}
 }
+
