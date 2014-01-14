@@ -158,9 +158,13 @@ public class MainActivity extends LogoutOnStopActivity {
     
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-    	
-    	if (resultCode != Activity.RESULT_OK)
+
+    	if (resultCode != Activity.RESULT_OK) {
+    		Log.d(TAG, "Result code is NOT ok");
     		return;
+    	}
+    	
+    	Log.d(TAG, "result code: " + requestCode);
     	
     	if (requestCode == CAPTURE_IMAGE_REQUEST_CODE ) {
     		
@@ -173,22 +177,22 @@ public class MainActivity extends LogoutOnStopActivity {
     		setPhotoPath(thumbnailFilepath);
     		new UploadPhotoTask().execute();
     		
-    	} else if (requestCode == CAPTURE_VIDEO_REQUEST_CODE) {
+    	}  if (requestCode == CAPTURE_VIDEO_REQUEST_CODE) {
     		
     		String thumbnailFilepath = data.getStringExtra(CameraManager.EXTRA_VIDEO_FILE_PATH);
     		Log.d(TAG, "Video filepath: " + thumbnailFilepath);
     		
     		setPhotoPath(thumbnailFilepath);
     		new UploadPhotoTask().execute();
-    	}
-    	
-    	if (requestCode == SPEECH_REQUEST) {
+    	} if (requestCode == SPEECH_REQUEST) {
     		
         	Log.d(TAG, "onActivityResult");
     		
     		List<String> results = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
     		String spokenText = results.get(0);
     		Log.d(TAG, "spoken text: " + spokenText);
+    		VoiceTextObject obj = new VoiceTextObject(spokenText);
+    		obj.send();
     	}
     	
     	/*
@@ -216,6 +220,7 @@ public class MainActivity extends LogoutOnStopActivity {
     	    }
     	    */
     	super.onActivityResult(requestCode, resultCode, data);
+
     }
     
    	private void startPhoto() {
